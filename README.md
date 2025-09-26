@@ -1,1 +1,404 @@
-# howls-apks
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Howls APKs - Secure APK Downloads</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cinzel', serif;
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: #000000;
+            padding: 2.5rem 0;
+            text-align: center;
+            border-bottom: 2px solid #ffffff;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 3.5rem;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            margin-bottom: 0.5rem;
+            letter-spacing: 3px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #cccccc;
+        }
+
+        .search-section {
+            background-color: #111111;
+            padding: 1.5rem;
+            margin: 2rem auto;
+            border-radius: 8px;
+            border: 1px solid #333333;
+        }
+
+        .search-container {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .search-container label {
+            font-weight: bold;
+            color: #ffffff;
+            white-space: nowrap;
+            font-size: 1.1rem;
+        }
+
+        #search {
+            flex: 1;
+            padding: 12px 20px;
+            border: 1px solid #333333;
+            border-radius: 4px;
+            background-color: #000000;
+            color: white;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        #search::placeholder {
+            color: #888888;
+        }
+
+        #search-btn {
+            padding: 12px 25px;
+            background-color: #ffffff;
+            border: 1px solid #ffffff;
+            border-radius: 4px;
+            color: #000000;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        #search-btn:hover {
+            background-color: #000000;
+            color: #ffffff;
+        }
+
+        .apk-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+            margin: 2rem 0;
+        }
+
+        .apk-item {
+            background-color: #111111;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid #333333;
+            transition: all 0.3s ease;
+        }
+
+        .apk-item:hover {
+            transform: translateY(-5px);
+            border-color: #ffffff;
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+        }
+
+        .apk-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .apk-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #222222;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.5rem;
+            border: 1px solid #444444;
+        }
+
+        .apk-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .apk-description {
+            color: #cccccc;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .apk-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #aaaaaa;
+        }
+
+        .password-section {
+            margin: 1.5rem 0;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #333333;
+            border-radius: 4px;
+            background-color: #000000;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .password-input::placeholder {
+            color: #888888;
+        }
+
+        .download-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #ffffff;
+            border: 1px solid #ffffff;
+            border-radius: 4px;
+            color: #000000;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .download-btn:hover {
+            background-color: #000000;
+            color: #ffffff;
+        }
+
+        .upload-section {
+            background-color: #111111;
+            padding: 2rem;
+            margin: 3rem auto;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #333333;
+        }
+
+        .upload-section h2 {
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .upload-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #ffffff;
+            border: 1px solid #ffffff;
+            border-radius: 4px;
+            color: #000000;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .upload-btn:hover {
+            background-color: #000000;
+            color: #ffffff;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            border-top: 1px solid #333333;
+            color: #888888;
+            font-size: 0.9rem;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 2rem;
+            grid-column: 1 / -1;
+            color: #888888;
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .apk-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .search-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .search-container label {
+                text-align: center;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="logo">HOWLS APKS</h1>
+            <p>Secure APK Downloads with Password Protection</p>
+        </header>
+
+        <section class="search-section">
+            <div class="search-container">
+                <label for="search">Search APKs:</label>
+                <input type="text" id="search" placeholder="Enter app name or description...">
+                <button id="search-btn"><i class="fas fa-search"></i> Search</button>
+            </div>
+        </section>
+
+        <section class="apk-list" id="apk-list">
+            <!-- APK items will be dynamically added here -->
+        </section>
+
+        <section class="upload-section">
+            <h2>How to Add Your APK</h2>
+            <p>Edit the code to add your APK files and Google Drive links</p>
+        </section>
+
+        <footer>
+            <p>Howls APKs &copy; 2023 | All APKs are verified and safe to download</p>
+        </footer>
+    </div>
+
+    <script>
+        // YOUR APK DATA - EDIT THIS SECTION
+        const apkData = [
+            {
+                id: 1,
+                name: "WhatsApp Messenger",
+                description: "Free messaging and video calling app",
+                version: "2.23.10.75",
+                size: "45.2 MB",
+                password: "whatsapp123",
+                downloadUrl: "PASTE YOUR GOOGLE DRIVE LINK HERE",
+                icon: "fab fa-whatsapp"
+            },
+            {
+                id: 2,
+                name: "Instagram",
+                description: "Photo and video sharing app",
+                version: "285.0.0.0.77",
+                size: "52.7 MB",
+                password: "instagram456",
+                downloadUrl: "PASTE YOUR GOOGLE DRIVE LINK HERE",
+                icon: "fab fa-instagram"
+            }
+            // ADD MORE APKS HERE - COPY AND PASTE THE FORMAT ABOVE
+        ];
+
+        // Function to display APKs
+        function displayAPKs(apks) {
+            const apkList = document.getElementById('apk-list');
+            apkList.innerHTML = '';
+
+            if (apks.length === 0) {
+                apkList.innerHTML = '<div class="no-results">No APKs found matching your search.</div>';
+                return;
+            }
+
+            apks.forEach(apk => {
+                const apkItem = document.createElement('div');
+                apkItem.className = 'apk-item';
+                apkItem.innerHTML = `
+                    <div class="apk-header">
+                        <div class="apk-icon">
+                            <i class="${apk.icon}"></i>
+                        </div>
+                        <div class="apk-title">${apk.name}</div>
+                    </div>
+                    <div class="apk-description">${apk.description}</div>
+                    <div class="apk-details">
+                        <span><i class="fas fa-code-branch"></i> Version: ${apk.version}</span>
+                        <span><i class="fas fa-weight-hanging"></i> Size: ${apk.size}</span>
+                    </div>
+                    <div class="password-section">
+                        <input type="password" class="password-input" placeholder="Enter password for ${apk.name}" id="pwd-${apk.id}">
+                        <button class="download-btn" onclick="downloadAPK(${apk.id})">
+                            <i class="fas fa-download"></i> Download APK
+                        </button>
+                    </div>
+                `;
+                apkList.appendChild(apkItem);
+            });
+        }
+
+        // Function to handle APK download with password protection
+        function downloadAPK(id) {
+            const apk = apkData.find(a => a.id === id);
+            const inputPassword = document.getElementById(`pwd-${id}`).value;
+            
+            if (inputPassword === apk.password) {
+                if (apk.downloadUrl && apk.downloadUrl !== "PASTE YOUR GOOGLE DRIVE LINK HERE") {
+                    window.open(apk.downloadUrl, '_blank');
+                } else {
+                    alert('Download link not set yet!');
+                }
+            } else {
+                alert('Incorrect password! Please try again.');
+                document.getElementById(`pwd-${id}`).value = '';
+                document.getElementById(`pwd-${id}`).focus();
+            }
+        }
+
+        // Search functionality
+        document.getElementById('search-btn').addEventListener('click', performSearch);
+        document.getElementById('search').addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        function performSearch() {
+            const searchTerm = document.getElementById('search').value.toLowerCase();
+            const filteredAPKs = apkData.filter(apk => 
+                apk.name.toLowerCase().includes(searchTerm) || 
+                apk.description.toLowerCase().includes(searchTerm)
+            );
+            displayAPKs(filteredAPKs);
+        }
+
+        // Initial display of all APKs
+        displayAPKs(apkData);
+    </script>
+</body>
+</html>
